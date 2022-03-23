@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test thread-count="2" parallel="methods" name="java-automation-framework">
+<suite name="All Test Suite" data-provider-thread-count="3">
+    <listeners>
+        <listener class-name="com.ca.listeners.ListenerClass" />
+        <listener class-name="com.ca.listeners.MethodInterceptor" />
+        <listener class-name="com.ca.listeners.AnnotationTransformer" />
+    </listeners>
+
+    <test thread-count="1" parallel="methods" name="java-automation-framework">
         <classes>
-            <class name="com.ca.tests.LoginTest"></class>
-            <class name="com.ca.tests.LoginTest2"></class>
+            <class name="com.ca.tests.AmazonDemoTest"/>
         </classes>
     </test>
 </suite>

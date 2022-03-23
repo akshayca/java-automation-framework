@@ -1,20 +1,28 @@
 package com.ca.driver;
 
-import com.ca.utils.ReadPropertyFile;
+import com.ca.enums.ConfigProperties;
+import com.ca.exceptions.BrowserInvocationFailedException;
+import com.ca.factories.DriverFactory;
+import com.ca.utils.PropertyUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Objects;
 
 public class Driver {
 
-    public static void initDriver() throws Exception {
-        if(Objects.isNull(DriverManager.getDriver())){
-            WebDriverManager.chromedriver().setup();
-            DriverManager.setDriver(new ChromeDriver());
-            DriverManager.getDriver().get(ReadPropertyFile.getValue("url"));
+    public static void initDriver(String browser,String version)  {
+
+
+        if(Objects.isNull(DriverManager.getDriver())) {
+            try {
+                DriverManager.setDriver(DriverFactory.getDriver(browser,version));
+
+            } catch (MalformedURLException e) {
+                throw new BrowserInvocationFailedException("Please check the capabilities of browser");
+            }
+            DriverManager.getDriver().get(PropertyUtils.get(ConfigProperties.URL));
         }
     }
 

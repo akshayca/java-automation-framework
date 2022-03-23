@@ -1,0 +1,14 @@
+package com.ca.enums;
+
+public enum ConfigProperties {
+
+    URL,
+    OVERRIDEREPORTS,
+    PASSEDSTEPSSCREENSHOTS,
+    FAILEDSTEPSSCREENSHOTS,
+    RETRYFAILEDTESTS,
+    RUNMODE,
+    SELENIUMGRIDURL,
+    BROWSER
+
+}

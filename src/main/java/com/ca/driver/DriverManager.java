@@ -2,6 +2,8 @@ package com.ca.driver;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.Objects;
+
 public final class DriverManager {
 
     private DriverManager(){
@@ -14,7 +16,9 @@ public final class DriverManager {
     }
 
     public static void setDriver(WebDriver driverref){
-        dr.set(driverref);
+        if(Objects.nonNull(driverref)) {
+            dr.set(driverref);
+        }
     }
 
     public static void unload(){
